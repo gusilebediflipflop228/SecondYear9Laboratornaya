@@ -80,5 +80,69 @@ public class LambdaDemoTest {
         assertEquals("Петров Петр null", LambdaDemo.getFIO.apply(human2));
     }
 
+
+
+
+    @Test
+    public void testMakeOlder() {
+        Human human1 = new Human("Yurisarov", "Timofey", "Veniaminovich", 22, "Male");
+        Human human11 = new Human("Yurisarov", "Timofey", "Veniaminovich", 23, "Male");
+        Human human2 = new Human("Ivanov", "Ivan", "Ivanovich", 52, "Male");
+        Human human22 = new Human("Ivanov", "Ivan", "Ivanovich", 53, "Male");
+        assertEquals(human11, LambdaDemo.makeOlder.apply(human1));
+        assertEquals(human22, LambdaDemo.makeOlder.apply(human2));
+    }
+
+
+
+
+    @Test
+    public void testHumanYoungerThan() {
+        Human human1 = new Human("Иванов", "Иван", "Иванович", 20, "Male");
+        Human human2 = new Human("Петров", "Пётр", "Петрович", 22, "Male");
+        Human human3 = new Human("Сидорова", "Мария", "Ивановна", 25, "Male");
+        Human human4 = new Human("Юрисаров", "Тимофей", "Вениаминович", 31, "Male");
+        assertTrue(LambdaDemo.humanYoungerThan.test(human1, human2, human3, 30));
+        assertFalse(LambdaDemo.humanYoungerThan.test(human1, human2, human4, 30));
+    }
+
+
+
+
+    @Test
+    public void testPersonAge() {
+        LambdaDemo.PersonInfo s = new StudentPersonInfoAdapter(
+                    "Юрисаров", "Тимофей", "Вениаминович", 22, "Male", "ОмГУ", "ФЦТК", "Гордое звание айтишник");
+        int age = LambdaDemo.personAge.applyAsInt(s); // абстрактный метод интерфейса
+        assertEquals(22, age);
+    }
+
+
+
+
+    @Test
+    public void testSameSurnamePerson() {
+        LambdaDemo.PersonInfo s1 = new StudentPersonInfoAdapter(
+                "Юрисаров", "Тимофей", "Вениаминович", 22, "Male", "ОмГУ", "ФЦТК", "Гордое звание айтишник");
+        LambdaDemo.PersonInfo s2 = new StudentPersonInfoAdapter(
+                "Юрисаров", "Алексей", "Вениаминович", 15, "Male", "ОмГУ", "ФЦТК", "Гордое звание айтишник");
+        LambdaDemo.PersonInfo s3 = new StudentPersonInfoAdapter(
+                "Щербаков", "Тимофей", "Вениаминович", 22, "Male", "ОмГУ", "ФЦТК", "Гордое звание айтишник");
+        assertTrue(LambdaDemo.sameSurnamePerson.test(s1, s2));
+        assertFalse(LambdaDemo.sameSurnamePerson.test(s1, s3));
+    }
+
+
+
+
+    @Test
+    public void testPersonFIO() {
+        LambdaDemo.PersonInfo p1 = new HumanPersonInfoAdapter("Иванов", "Иван", "Иванович", 30, "Male");
+        LambdaDemo.PersonInfo p2 = new HumanPersonInfoAdapter("Сидоров", null, "Александрович", 40, "Male");
+        assertEquals("Иванов Иван Иванович", LambdaDemo.personFIO.apply(p1));
+    assertEquals("Сидоров null Александрович", LambdaDemo.personFIO.apply(p2));
+    }
 }
+
+
 
