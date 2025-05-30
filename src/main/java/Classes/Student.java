@@ -1,3 +1,7 @@
+package Classes;
+
+import Enums.Gender;
+
 import java.util.Objects;
 
 public class Student extends Human {
@@ -5,7 +9,7 @@ public class Student extends Human {
     private String faculty;
     private String specialty;
 
-    public Student(String surname, String firstname, String patronymic, int age, String gender, String university, String faculty, String specialty) {
+    public Student(String surname, String firstname, String patronymic, int age, Gender gender) {
         super(surname, firstname, patronymic, age, gender);
         this.university = university;
         this.faculty = faculty;

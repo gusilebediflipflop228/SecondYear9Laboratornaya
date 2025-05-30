@@ -1,3 +1,4 @@
+import Classes.LambdaRunner;
 import org.junit.Test;
 
 import java.util.function.*;

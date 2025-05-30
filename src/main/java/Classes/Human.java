@@ -1,3 +1,7 @@
+package Classes;
+
+import Enums.Gender;
+
 import java.util.Objects;
 
 public class Human {
@@ -5,9 +9,9 @@ public class Human {
     private String firstname;
     private String patronymic;
     private int age;
-    private String gender;
+    private Gender gender;
 
-    public Human(String surname, String firstname, String patronymic, int age, String gender) {
+    public Human(String surname, String firstname, String patronymic, int age, Gender gender) {
         this.surname = surname;
         this.firstname = firstname;
         this.patronymic = patronymic;
@@ -47,11 +51,11 @@ public class Human {
         this.age = age;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
