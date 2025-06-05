@@ -179,5 +179,25 @@ public class StreamApiDemoTest {
 
 
 
+    @Test
+    public void testSortsByGenderThenAge() {
+
+        List<LambdaDemo.PersonInfo> people = Arrays.asList(
+                new HumanPersonInfoAdapter("Иванов", "Иван", "Иванович", 30, Gender.MAlE),
+                new HumanPersonInfoAdapter("Сидоров", "null", "Александрович", 40, Gender.MAlE),
+                new HumanPersonInfoAdapter("Загребина", "Анастасия", "Викторовна", 40, Gender.FEMALE),
+                new HumanPersonInfoAdapter("Овсяннникова", "Елизавета", "Сергеевна", 30, Gender.FEMALE));
+        List<LambdaDemo.PersonInfo> result = StreamApiDemo.sortByGenderThenAge.apply(people);
+
+        List<LambdaDemo.PersonInfo> expected = Arrays.asList(
+                new HumanPersonInfoAdapter("Иванов", "Иван", "Иванович", 30, Gender.MAlE),
+                new HumanPersonInfoAdapter("Сидоров", "null", "Александрович", 40, Gender.MAlE),
+                new HumanPersonInfoAdapter("Овсяннникова", "Елизавета", "Сергеевна", 30, Gender.FEMALE),
+                new HumanPersonInfoAdapter("Загребина", "Анастасия", "Викторовна", 40, Gender.FEMALE));
+        assertEquals(expected, result);
+    }
+
+
+
 
 }
